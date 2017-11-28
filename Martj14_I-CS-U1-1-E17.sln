@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2008
+VisualStudioVersion = 15.0.27004.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Martj14_I-CS-U1-1-E17", "Martj14_I-CS-U1-1-E17\Martj14_I-CS-U1-1-E17.csproj", "{CE0DAFD7-684A-434A-A914-01C5131675A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Martj14_I-CS-U1-1-E17", "Martj14_I-CS-U1-1-E17\Martj14_I-CS-U1-1-E17.csproj", "{CE0DAFD7-684A-434A-A914-01C5131675A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LotteryCore", "LotteryCore\LotteryCore.csproj", "{BD8193F0-6DA2-482B-A950-95116602711A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{CE0DAFD7-684A-434A-A914-01C5131675A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE0DAFD7-684A-434A-A914-01C5131675A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE0DAFD7-684A-434A-A914-01C5131675A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD8193F0-6DA2-482B-A950-95116602711A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD8193F0-6DA2-482B-A950-95116602711A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD8193F0-6DA2-482B-A950-95116602711A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD8193F0-6DA2-482B-A950-95116602711A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
