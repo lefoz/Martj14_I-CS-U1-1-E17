@@ -1,33 +1,51 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using LotteryCore.LotteryDataPresistence;
 
 namespace LotteryCore.LotteryRepository
 {
-    class SerielNumberRepository
+    public class SerielNumberRepository
     {
         private Dictionary<string, bool> _lotteryDictionary = new Dictionary<string, bool>();
-
+        
+        /// <summary>
+        /// Calls serielnumber generator method
+        /// </summary>
+        /// <param name="amount">The amount of serielnumbers to be generated</param>
         public void GenerateNewSerielNumbers(int amount)
         {
-            ISerielNumberGenereter newGenereter = new SerielNumberGenereter();
+            ISerielNumberGenerator newGenereter = new SerielNumberGenerator();
             _lotteryDictionary = newGenereter.GenerateSerielNumberDictionary(amount);
         }
 
-
+        /// <summary>
+        /// Recives a string list containing the serielnumbers c´recovered from a file on the file system
+        /// Splits each string in the a serielnumber and a bool value, adding these as key and value in the seriel dictionary
+        /// </summary>
+        /// <returns>A dictionary</returns>
         public bool SerielNumbersFromFile()
         {
-            //_lotteryDictionary = 
+            FileUpStream fileUpStream = new FileUpStream();
+            List<string> serielnumbers = fileUpStream.LoadSerielNumbersFromFile();
+            foreach (var item in serielnumbers)
+            {
+                string seriel = item.Substring(0, 4);
+                string value = item.Substring(5);
+               _lotteryDictionary.Add(seriel, Convert.ToBoolean(value));
+               
+            }
+            if (_lotteryDictionary.Count > 0) return true;
             return false;
-
         }
 
-
-        public bool SerielNumbersToFile()
+        /// <summary>
+        /// Save seerielnumbers to in a file on the file system
+        /// </summary>
+        public void SerielNumbersToFile()
         {
-            //_lotteryDictionary = 
-            return false;
-
+            FileDownStream fileDownStream = new FileDownStream();
+            fileDownStream.SaveSerielNumbersToFile(_lotteryDictionary); 
         }
         /// <summary>
         /// Checks Dictionary for serielnumber

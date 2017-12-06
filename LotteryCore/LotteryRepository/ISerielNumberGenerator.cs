@@ -2,7 +2,7 @@
 
 namespace LotteryCore.LotteryRepository
 {
-    interface ISerielNumberGenereter
+    public interface ISerielNumberGenerator
     {
         Dictionary<string, bool> GenerateSerielNumberDictionary(int amount);
     }

@@ -15,7 +15,7 @@ namespace Martj14_I_CS_U1_1_E17.Controllers
             return View();
         }
 
-        public IActionResult About()
+        public IActionResult Login()
         {
             ViewData["Message"] = "Your application description page.";
 

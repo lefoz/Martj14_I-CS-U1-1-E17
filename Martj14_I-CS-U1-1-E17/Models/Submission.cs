@@ -13,7 +13,7 @@ namespace Martj14.Models
         private string _phonenumber { get; set; }
         private string _birthdate { get; set; }
         private string _password { get; set; }
-        private string _drawSerial { get; set; }
+        private string _lotterySerial { get; set; }
         private DateTime _submissionDate { get; set; }
 
         /// <summary>
@@ -25,9 +25,9 @@ namespace Martj14.Models
         /// <param name="phonenumber"></param>
         /// <param name="birthdate"></param>
         /// <param name="password"></param>
-        /// <param name="drawSerial"></param>
+        /// <param name="lotterySerial"></param>
         /// <param name="submissionDate"></param>
-        public Submission(string firstName, string lastName, string email, string phonenumber, string birthdate, string password, string drawSerial, DateTime submissionDate)
+        public Submission(string firstName, string lastName, string email, string phonenumber, string birthdate, string password, string lotterySerial, DateTime submissionDate)
         {
         _firstName = firstName;
         _lastName = lastName;
@@ -35,7 +35,7 @@ namespace Martj14.Models
         _phonenumber = phonenumber;
         _birthdate = birthdate;
         _password = password;
-        _drawSerial = drawSerial;
+        _lotterySerial = lotterySerial;
         _submissionDate = DateTime.Now;
     }
 }

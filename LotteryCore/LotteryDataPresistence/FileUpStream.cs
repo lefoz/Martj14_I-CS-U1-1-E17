@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LotteryCore.LotteryDataPresistence
 {
-    class FileUpStream
+    public class FileUpStream
     {
         private readonly string _serielNumberFileName = "SerielNumbers.dat";
         private readonly string _submissionsFileName = "SerielNumbers.dat";

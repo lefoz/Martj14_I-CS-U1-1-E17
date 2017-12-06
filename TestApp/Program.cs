@@ -57,6 +57,20 @@ namespace TestApp
             }
             return serielNum;
         }
+        public bool SerielNumbersFromFile(Dictionary<string, bool> _lotteryDictionary)
+        {
+            
+            List<string> serielnumbers = LoadSerielNumbersFromFile();
+            foreach (var item in serielnumbers)
+            {
+                string seriel = item.Substring(0, 4);
+                string value = item.Substring(5);
+                _lotteryDictionary.Add(seriel, Convert.ToBoolean(value));
+
+            }
+            if (_lotteryDictionary.Count > 99) return true;
+            return false;
+        }
         static void Main(string[] args)
         {
             Program p = new Program();
@@ -79,6 +93,15 @@ namespace TestApp
             {
                 Console.WriteLine(item); 
             }
+            Console.ReadKey();
+            testDic.Clear();
+            Console.WriteLine(p.SerielNumbersFromFile(testDic));
+            foreach (KeyValuePair<string, bool> kvp in testDic)
+            {
+                Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
+
+            }
+            Console.WriteLine(testDic.Count);
             Console.ReadKey();
         }
     }

@@ -4,13 +4,13 @@ using System.Text;
 
 namespace LotteryCore.LotteryRepository
 {
-    class SerielNumberGenereter : ISerielNumberGenereter
+    public class SerielNumberGenerator : ISerielNumberGenerator
     {
        private readonly string[] _serielLetters = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
        private Random _random;
        private int _amountOfSerielNumbers { get; set; }
 
-        public SerielNumberGenereter()
+        public SerielNumberGenerator()
         {
         }
 
