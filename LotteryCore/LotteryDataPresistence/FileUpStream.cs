@@ -10,7 +10,7 @@ namespace LotteryCore.LotteryDataPresistence
     {
         private readonly string _serielNumberFileName = "SerielNumbers.dat";
         private readonly string _submissionsFileName = "Submissions.bin";
-        private readonly string _loginsFileName = "SerielNumbers.dat";
+        private readonly string _loginsFileName = "Logins.dat";
 
         public List<string> LoadSerielNumbersFromFile()
         {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using Martj14.Models;
+using Microsoft.Azure.KeyVault.Models;
 
 
 namespace TestApp
@@ -11,7 +12,8 @@ namespace TestApp
         private readonly string[] _serielLetters = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
         private Random _random;
         private int _amountOfSerielNumbers { get; set; }
-        private readonly string _serielNumberFileName = "SeNumTest.dat";
+        private readonly string _serielNumberFileName = "SerielNumbers.dat";
+        private readonly string _loginsFileName = "Logins.dat";
 
 
         public Dictionary<string, bool> GenerateSerielNumberDictionary(int amount)
@@ -74,6 +76,17 @@ namespace TestApp
             return false;
         }
 
+        public void SaveLoginsToFile(string email, string password)
+        {
+            using (StreamWriter streamWriter = new StreamWriter(new FileStream(_loginsFileName, FileMode.Append)))
+            {
+
+                string save = email + "|" + password;
+                streamWriter.WriteLine(save);
+
+            }
+        }
+
         [Serializable]
         public class Salesman
         {
@@ -88,14 +101,16 @@ namespace TestApp
                 this.sales = sale;
             }
         }
+
    
         static void Main(string[] args)
         {
-            //Program p = new Program();
+            Program p = new Program();
+            p.SaveLoginsToFile("admin","admin");
             //Dictionary<string, bool> testDic = new Dictionary<string, bool>();
             //List<string> test = new List<string>();
             //testDic = p.GenerateSerielNumberDictionary(100);
-            //foreach (KeyValuePair<string,bool> kvp in testDic)
+            //foreach (KeyValuePair<string, bool> kvp in testDic)
             //{
             //    Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
 
