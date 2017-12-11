@@ -6,11 +6,13 @@ using System.Text;
 using LotteryCore.LotteryDataPresistence;
 using LotteryCore.LotteryRepository;
 using LotteryCore.LotterySecurity;
-using Martj14.Models;
+using LotteryWeb.Models;
+
+
 
 namespace LotteryCore
 {
-    class LotteryController
+    class LotteryController : ILotteryController
     {
         
         private ILoginInformation loginInformation;

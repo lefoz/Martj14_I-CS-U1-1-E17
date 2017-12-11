@@ -12,13 +12,19 @@ namespace LotteryWeb.Controllers
     {
         public IActionResult Index()
         {
+
+            return View();
+        }
+        
+        public IActionResult Submissions()
+        {
+
             return View();
         }
 
-        public IActionResult About()
+        public IActionResult UserPage()
         {
-            ViewData["Message"] = "Your application description page.";
-
+           
             return View();
         }
 
