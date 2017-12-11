@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace Martj14_I_CS_U1_1_E17
+namespace Martj14
 {
     public class Program
     {

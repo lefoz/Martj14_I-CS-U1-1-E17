@@ -1,6 +1,4 @@
-using System;
-
-namespace Martj14_I_CS_U1_1_E17.Models
+namespace Martj14.Models
 {
     public class ErrorViewModel
     {

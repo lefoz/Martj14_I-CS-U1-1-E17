@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
+using Martj14.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Martj14_I_CS_U1_1_E17.Models;
 
-namespace Martj14_I_CS_U1_1_E17.Controllers
+namespace Martj14.Controllers
 {
     public class HomeController : Controller
     {
@@ -14,17 +11,17 @@ namespace Martj14_I_CS_U1_1_E17.Controllers
         {
             return View();
         }
-
+        [Authorize]
         public IActionResult Login()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "Login";
 
             return View();
         }
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "Submisssions";
 
             return View();
         }

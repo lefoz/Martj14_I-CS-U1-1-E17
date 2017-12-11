@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Martj14.Models;
+using LotteryWeb.Models;
 
 namespace LotteryCore.LotteryDataPresistence
 {

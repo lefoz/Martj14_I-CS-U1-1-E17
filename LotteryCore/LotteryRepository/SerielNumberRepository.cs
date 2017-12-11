@@ -7,24 +7,24 @@ namespace LotteryCore.LotteryRepository
 {
     public class SerielNumberRepository : ISerielNumberRepository
     {
-        private Dictionary<string, bool> _lotteryDictionary = new Dictionary<string, bool>();
+        //private Dictionary<string, bool> _lotteryDictionary = new Dictionary<string, bool>();
         
         /// <summary>
         /// Calls serielnumber generator method
         /// </summary>
         /// <param name="amount">The amount of serielnumbers to be generated</param>
-        public void GenerateNewSerielNumbers(int amount)
+        public void GenerateNewSerielNumbers(int amount, Dictionary<string, bool> lotteryDictionary)
         {
             ISerielNumberGenerator newGenereter = new SerielNumberGenerator();
-            _lotteryDictionary = newGenereter.GenerateSerielNumberDictionary(amount);
+            lotteryDictionary = newGenereter.GenerateSerielNumberDictionary(amount);
         }
 
         /// <summary>
         /// Recives a string list containing the serielnumbers c´recovered from a file on the file system
         /// Splits each string in the a serielnumber and a bool value, adding these as key and value in the seriel dictionary
         /// </summary>
-        /// <returns>A dictionary</returns>
-        public bool SerielNumbersFromFile()
+        /// <returns>A bool</returns>
+        public bool SerielNumbersFromFile(Dictionary<string, bool> lotteryDictionary)
         {
             FileUpStream fileUpStream = new FileUpStream();
             List<string> serielnumbers = fileUpStream.LoadSerielNumbersFromFile();
@@ -32,20 +32,20 @@ namespace LotteryCore.LotteryRepository
             {
                 string seriel = item.Substring(0, 4);
                 string value = item.Substring(5);
-               _lotteryDictionary.Add(seriel, Convert.ToBoolean(value));
+               lotteryDictionary.Add(seriel, Convert.ToBoolean(value));
                
             }
-            if (_lotteryDictionary.Count > 0) return true;
+            if (lotteryDictionary.Count > 0) return true;
             return false;
         }
 
         /// <summary>
         /// Save seerielnumbers to in a file on the file system
         /// </summary>
-        public void SerielNumbersToFile()
+        public void SerielNumbersToFile(Dictionary<string, bool> lotteryDictionary)
         {
             FileDownStream fileDownStream = new FileDownStream();
-            fileDownStream.SaveSerielNumbersToFile(_lotteryDictionary); 
+            fileDownStream.SaveSerielNumbersToFile(lotteryDictionary); 
         }
         
         /// <summary>
@@ -57,14 +57,14 @@ namespace LotteryCore.LotteryRepository
         /// </summary>
         /// <param name="serielnumber"></param>
         /// <returns></returns>
-        public int LookUpSerielNumber(string serielnumber)
+        public int LookUpSerielNumber(string serielnumber, Dictionary<string, bool> lotteryDictionary)
         {
             int lookUpConfirmation = 0;
-            if (_lotteryDictionary.ContainsKey(serielnumber))
+            if (lotteryDictionary.ContainsKey(serielnumber))
             {
-                if (_lotteryDictionary[serielnumber].Equals(true))
+                if (lotteryDictionary[serielnumber].Equals(true))
                 {
-                    _lotteryDictionary[serielnumber] = false;
+                    lotteryDictionary[serielnumber] = false;
                     lookUpConfirmation = 2;
                     return lookUpConfirmation;
                 }

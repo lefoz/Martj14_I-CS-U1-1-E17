@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using Martj14.Models;
-using Microsoft.Azure.KeyVault.Models;
+
+
 
 
 namespace TestApp
@@ -105,8 +105,8 @@ namespace TestApp
    
         static void Main(string[] args)
         {
-            Program p = new Program();
-            p.SaveLoginsToFile("admin","admin");
+            //Program p = new Program();
+            //p.SaveLoginsToFile("admin","admin");
             //Dictionary<string, bool> testDic = new Dictionary<string, bool>();
             //List<string> test = new List<string>();
             //testDic = p.GenerateSerielNumberDictionary(100);

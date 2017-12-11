@@ -4,8 +4,4 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Martj14_I-CS-U1-1-E17\Martj14.csproj" />
-  </ItemGroup>
-
 </Project>
