@@ -5,7 +5,7 @@ using LotteryCore.LotteryDataPresistence;
 
 namespace LotteryCore.LotteryRepository
 {
-    public class SerielNumberRepository
+    public class SerielNumberRepository : ISerielNumberRepository
     {
         private Dictionary<string, bool> _lotteryDictionary = new Dictionary<string, bool>();
         
@@ -47,6 +47,7 @@ namespace LotteryCore.LotteryRepository
             FileDownStream fileDownStream = new FileDownStream();
             fileDownStream.SaveSerielNumbersToFile(_lotteryDictionary); 
         }
+        
         /// <summary>
         /// Checks Dictionary for serielnumber
         /// If Dictionary contains serielnumber, its value reprencents if this serielnumber has been submitted

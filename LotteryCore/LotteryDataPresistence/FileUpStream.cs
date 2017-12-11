@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using Martj14.Models;
 
 namespace LotteryCore.LotteryDataPresistence
 {
-    public class FileUpStream
+    public class FileUpStream : IFileUpStream
     {
         private readonly string _serielNumberFileName = "SerielNumbers.dat";
-        private readonly string _submissionsFileName = "SerielNumbers.dat";
+        private readonly string _submissionsFileName = "Submissions.bin";
         private readonly string _loginsFileName = "SerielNumbers.dat";
 
         public List<string> LoadSerielNumbersFromFile()
@@ -26,26 +27,37 @@ namespace LotteryCore.LotteryDataPresistence
             return serielNum;
         }
 
-        public void SaveSubmissionsToFile(Dictionary<string, bool> submissions)
+        public List<Submission> LoadSubmissionsFromFile()
         {
-            using (StreamReader streamReader = new StreamReader(_submissionsFileName))
+            List<Submission> submissionList;
+            using (Stream stream = File.Open(_submissionsFileName, FileMode.Open))
             {
-                foreach (KeyValuePair<string, bool> kvp in submissions)
-                {
-                   
-                }
+                var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+
+                submissionList = (List<Submission>)bformatter.Deserialize(stream);
             }
+            //using (StreamReader streamReader = new StreamReader(_submissionsFileName))
+            //{
+            //    while ((line = streamReader.ReadLine()) != null)
+            //    {
+            //        submissionList.Add(line);
+            //    }
+            //}
+            return submissionList;
         }
 
-        public void SaveLoginsToFile(Dictionary<string, bool> logins)
+        public List<string> LoadLoginsFromFile()
         {
+            string line = "";
+            List<string> loginsList = new List<string>();
             using (StreamReader streamReader = new StreamReader(_loginsFileName))
             {
-                foreach (KeyValuePair<string, bool> kvp in logins)
+                while ((line = streamReader.ReadLine()) != null)
                 {
-                    
+                    loginsList.Add(line);
                 }
             }
+            return loginsList;
         }
     }
 }

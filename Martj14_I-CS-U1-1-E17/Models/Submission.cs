@@ -1,20 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Martj14.Models
 {
+    [Serializable]
     public class Submission
     {
-        private string _firstName { get; set; }
-        private string _lastName { get; set; }
-        private string _email { get; set; }
-        private string _phonenumber { get; set; }
-        private string _birthdate { get; set; }
-        private string _password { get; set; }
-        private string _lotterySerial { get; set; }
-        private DateTime _submissionDate { get; set; }
+        [Required]
+        [Display(Name = "First name")]
+        public string FirstName { get; }
+        [Required]
+        [Display(Name = "Last name")]
+        public string LastName { get; }
+        [Required]
+        [Display(Name = "Email")]
+        public string Email { get; }
+        [Required]
+        [Display(Name = "Phone Number")]
+        public string Phonenumber { get; }
+        [Required]
+        [Display(Name = "Bithdate")]
+        public string Birthdate { get; }
+        [Required]
+        [Display(Name = "Password")]
+        public string Password { get; }
+        [Required]
+        [Display(Name = "Serial NUmber")]
+        public List<string> LotterySerial; 
+        public DateTime SubmissionDate { get; }
 
         /// <summary>
         /// Model for Submission
@@ -27,16 +43,18 @@ namespace Martj14.Models
         /// <param name="password"></param>
         /// <param name="lotterySerial"></param>
         /// <param name="submissionDate"></param>
-        public Submission(string firstName, string lastName, string email, string phonenumber, string birthdate, string password, string lotterySerial, DateTime submissionDate)
+        public Submission(string firstName, string lastName, string email, string phonenumber, string birthdate, string password, string lotterySerial)
         {
-        _firstName = firstName;
-        _lastName = lastName;
-        _email = email;
-        _phonenumber = phonenumber;
-        _birthdate = birthdate;
-        _password = password;
-        _lotterySerial = lotterySerial;
-        _submissionDate = DateTime.Now;
+        FirstName = firstName;
+        LastName = lastName;
+        Email = email;
+        Phonenumber = phonenumber;
+        Birthdate = birthdate;
+        Password = password;
+        LotterySerial.Add(lotterySerial);
+        SubmissionDate = DateTime.Now;
     }
-}
+
+        
+    }
 }

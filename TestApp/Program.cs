@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Martj14.Models;
 
 
 namespace TestApp
@@ -57,9 +58,10 @@ namespace TestApp
             }
             return serielNum;
         }
+
         public bool SerielNumbersFromFile(Dictionary<string, bool> _lotteryDictionary)
         {
-            
+
             List<string> serielnumbers = LoadSerielNumbersFromFile();
             foreach (var item in serielnumbers)
             {
@@ -71,38 +73,92 @@ namespace TestApp
             if (_lotteryDictionary.Count > 99) return true;
             return false;
         }
+
+        [Serializable]
+        public class Salesman
+        {
+            public string name, address, email;
+            public int sales;
+
+            public Salesman(string name, string adr, string email, int sale)
+            {
+                this.name = name;
+                this.address = adr;
+                this.email = email;
+                this.sales = sale;
+            }
+        }
+   
         static void Main(string[] args)
         {
-            Program p = new Program();
-            Dictionary<string, bool> testDic = new Dictionary<string, bool>();
-            List<string> test = new List<string>();
-            testDic = p.GenerateSerielNumberDictionary(100);
-            foreach (KeyValuePair<string,bool> kvp in testDic)
-            {
-                Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
-                
-            }
-            Console.WriteLine(testDic.Count);
-           
+            //Program p = new Program();
+            //Dictionary<string, bool> testDic = new Dictionary<string, bool>();
+            //List<string> test = new List<string>();
+            //testDic = p.GenerateSerielNumberDictionary(100);
+            //foreach (KeyValuePair<string,bool> kvp in testDic)
+            //{
+            //    Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
 
-            p.SaveSerielNumbersToFile(testDic);
-            
+            //}
+            //Console.WriteLine(testDic.Count);
 
-            test = p.LoadSerielNumbersFromFile();
-            foreach (var item in test)
-            {
-                Console.WriteLine(item); 
-            }
-            Console.ReadKey();
-            testDic.Clear();
-            Console.WriteLine(p.SerielNumbersFromFile(testDic));
-            foreach (KeyValuePair<string, bool> kvp in testDic)
-            {
-                Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
 
-            }
-            Console.WriteLine(testDic.Count);
-            Console.ReadKey();
+            //p.SaveSerielNumbersToFile(testDic);
+
+
+            //test = p.LoadSerielNumbersFromFile();
+            //foreach (var item in test)
+            //{
+            //    Console.WriteLine(item); 
+            //}
+            //Console.ReadKey();
+            //testDic.Clear();
+            //Console.WriteLine(p.SerielNumbersFromFile(testDic));
+            //foreach (KeyValuePair<string, bool> kvp in testDic)
+            //{
+            //    Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
+
+            //}
+            //Console.WriteLine(testDic.Count);
+            //Console.ReadKey();
+
+            //Logins
+            //List<string> stringList = new List<string>();
+            //stringList.Add("eeeee|ppppp");
+            //stringList.Add("xxxx|zzzzzzz");
+            //foreach (var item in stringList)
+            //{
+            //    int d = item.IndexOf("|");
+            //    Console.WriteLine(item.Substring(0,d));
+            //    Console.WriteLine(item.Substring(d+1));
+            //}
+            //Console.ReadKey();
+
+            //List<Submission> submissionList = new List<Submission>();
+            //string serializationFile = Path.Combine("Submissions.bin");
+            //List<Salesman> salesmanreturn;
+
+            //serialize
+            //using (Stream stream = File.Open(serializationFile, FileMode.Create))
+            //{
+            //    var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+
+            //    bformatter.Serialize(stream, submissionList);
+            //}
+
+            //deserialize
+            //using (Stream stream = File.Open(serializationFile, FileMode.Open))
+            //{
+            //    var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+
+            //    salesmanreturn = (List<Salesman>)bformatter.Deserialize(stream);
+            //}
+            //foreach (var item in salesmanreturn)
+            //{
+            //    Console.WriteLine(item.name+" "+item.address+" "+item.email+" "+item.sales);
+            //}
+            //Console.ReadKey();
+
         }
     }
 }

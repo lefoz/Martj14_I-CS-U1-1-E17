@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using Martj14.Models;
 
 namespace LotteryCore.LotteryDataPresistence
 {
-    public class FileDownStream
+    public class FileDownStream : IFileDownStream
     {
         private readonly string _serielNumberFileName = "SerielNumbers.dat";
-        private readonly string _submissionsFileName = "SerielNumbers.dat";
-        private readonly string _loginsFileName = "SerielNumbers.dat";
+        private readonly string _submissionsFileName = "Submissions.bin";
+        private readonly string _loginsFileName = "Logins.dat";
 
         public void SaveSerielNumbersToFile(Dictionary<string, bool> serielnumbers)
         {
@@ -23,27 +24,33 @@ namespace LotteryCore.LotteryDataPresistence
             }
         }
 
-        public void SaveSubmissionsToFile(Dictionary<string, bool> submissions)
+        public void SaveSubmissionsToFile(List<Submission> submissions)
         {
-            using (StreamWriter streamWriter = new StreamWriter(_submissionsFileName))
+            string serializationFile = Path.Combine(_submissionsFileName);
+            using (Stream stream = File.Open(serializationFile, FileMode.Create))
             {
-                foreach (KeyValuePair<string, bool> kvp in submissions)
-                {
-                    string save = kvp.Key + "|" + kvp.Value;
-                    streamWriter.WriteLine(save);
-                }
+                var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+
+                bformatter.Serialize(stream, submissions);
             }
+            //using (StreamWriter streamWriter = new StreamWriter(new FileStream(_submissionsFileName, FileMode.Append)))
+            //{
+            //    foreach (Submission sub in submissions)
+            //    {
+            //        string save = sub.FirstName + "|" + sub.LastName + "|" + sub.Email + "|" + sub.Phonenumber + "|" + sub.Birthdate + "|" + sub.Password + "|" + sub.LotterySerial + "|" + sub.SubmissionDate;
+            //        streamWriter.WriteLine(save);
+            //    }
+            //}
         }
 
-        public void SaveLoginsToFile(Dictionary<string, bool> logins)
+        public void SaveLoginsToFile(string email, string password)
         {
-            using (StreamWriter streamWriter = new StreamWriter(_loginsFileName))
+            using (StreamWriter streamWriter = new StreamWriter(new FileStream(_loginsFileName, FileMode.Append)))
             {
-                foreach (KeyValuePair<string, bool> kvp in logins)
-                {
-                    string save = kvp.Key + "|" + kvp.Value;
+               
+                    string save = email + "|" + password;
                     streamWriter.WriteLine(save);
-                }
+               
             }
         }
     }
