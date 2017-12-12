@@ -1,4 +1,4 @@
-﻿using LotteryWeb.Models;
+﻿using LotteryCore.Model;
 
 namespace LotteryCore
 {

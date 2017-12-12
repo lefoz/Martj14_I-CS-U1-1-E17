@@ -6,7 +6,8 @@ using System.Text;
 using LotteryCore.LotteryDataPresistence;
 using LotteryCore.LotteryRepository;
 using LotteryCore.LotterySecurity;
-using LotteryWeb.Models;
+using LotteryCore.Model;
+
 
 
 

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-
-
+using System.IO.IsolatedStorage;
+using System.Xml.Serialization;
 
 
 namespace TestApp
@@ -105,75 +105,105 @@ namespace TestApp
    
         static void Main(string[] args)
         {
-            //Program p = new Program();
-            //p.SaveLoginsToFile("admin","admin");
-            //Dictionary<string, bool> testDic = new Dictionary<string, bool>();
-            //List<string> test = new List<string>();
-            //testDic = p.GenerateSerielNumberDictionary(100);
-            //foreach (KeyValuePair<string, bool> kvp in testDic)
-            //{
-            //    Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
+            Program p = new Program();
+            List<Salesman> test = new List<Salesman>();
+            List<Salesman> testback = new List<Salesman>();
+            test.Add(new Salesman("dsgg","dssg","dvbrb",5));
+            test.Add(new Salesman("mnymm", "iihgf", "djjjjy", 8));
+            string fileName = "testxml.xml";
+            using (IsolatedStorageFileStream file = new IsolatedStorageFileStream(fileName, FileMode.Create, FileAccess.Write, IsolatedStorageFile.GetUserStoreForApplication()))
 
-            //}
-            //Console.WriteLine(testDic.Count);
+            {
 
 
-            //p.SaveSerielNumbersToFile(testDic);
+                XmlSerializer serializer = new XmlSerializer(test.GetType());
 
+                serializer.Serialize(file, test);
+            }
 
-            //test = p.LoadSerielNumbersFromFile();
-            //foreach (var item in test)
-            //{
-            //    Console.WriteLine(item); 
-            //}
-            //Console.ReadKey();
-            //testDic.Clear();
-            //Console.WriteLine(p.SerielNumbersFromFile(testDic));
-            //foreach (KeyValuePair<string, bool> kvp in testDic)
-            //{
-            //    Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
+            using(IsolatedStorageFileStream file = new IsolatedStorageFileStream(fileName, FileMode.Open, FileAccess.Read, IsolatedStorageFile.GetUserStoreForApplication()))
 
-            //}
-            //Console.WriteLine(testDic.Count);
-            //Console.ReadKey();
+            {
+                XmlSerializer serializer = new XmlSerializer(test.GetType());
 
-            //Logins
-            //List<string> stringList = new List<string>();
-            //stringList.Add("eeeee|ppppp");
-            //stringList.Add("xxxx|zzzzzzz");
-            //foreach (var item in stringList)
-            //{
-            //    int d = item.IndexOf("|");
-            //    Console.WriteLine(item.Substring(0,d));
-            //    Console.WriteLine(item.Substring(d+1));
-            //}
-            //Console.ReadKey();
-
-            //List<Submission> submissionList = new List<Submission>();
-            //string serializationFile = Path.Combine("Submissions.bin");
-            //List<Salesman> salesmanreturn;
-
-            //serialize
-            //using (Stream stream = File.Open(serializationFile, FileMode.Create))
-            //{
-            //    var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-
-            //    bformatter.Serialize(stream, submissionList);
-            //}
-
-            //deserialize
-            //using (Stream stream = File.Open(serializationFile, FileMode.Open))
-            //{
-            //    var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-
-            //    salesmanreturn = (List<Salesman>)bformatter.Deserialize(stream);
-            //}
-            //foreach (var item in salesmanreturn)
-            //{
-            //    Console.WriteLine(item.name+" "+item.address+" "+item.email+" "+item.sales);
-            //}
-            //Console.ReadKey();
-
+                serializer.Serialize(file, testback);
+                foreach (var item in testback)
+                {
+                    Console.WriteLine(item.name+" "+item.address);
+                   
+                }
+            }
+            Console.ReadKey();
         }
+        //Program p = new Program();
+        //p.SaveLoginsToFile("admin","admin");
+        //Dictionary<string, bool> testDic = new Dictionary<string, bool>();
+        //List<string> test = new List<string>();
+        //testDic = p.GenerateSerielNumberDictionary(100);
+        //foreach (KeyValuePair<string, bool> kvp in testDic)
+        //{
+        //    Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
+
+        //}
+        //Console.WriteLine(testDic.Count);
+
+
+        //p.SaveSerielNumbersToFile(testDic);
+
+
+        //test = p.LoadSerielNumbersFromFile();
+        //foreach (var item in test)
+        //{
+        //    Console.WriteLine(item); 
+        //}
+        //Console.ReadKey();
+        //testDic.Clear();
+        //Console.WriteLine(p.SerielNumbersFromFile(testDic));
+        //foreach (KeyValuePair<string, bool> kvp in testDic)
+        //{
+        //    Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
+
+        //}
+        //Console.WriteLine(testDic.Count);
+        //Console.ReadKey();
+
+        //Logins
+        //List<string> stringList = new List<string>();
+        //stringList.Add("eeeee|ppppp");
+        //stringList.Add("xxxx|zzzzzzz");
+        //foreach (var item in stringList)
+        //{
+        //    int d = item.IndexOf("|");
+        //    Console.WriteLine(item.Substring(0,d));
+        //    Console.WriteLine(item.Substring(d+1));
+        //}
+        //Console.ReadKey();
+
+        //List<Submission> submissionList = new List<Submission>();
+        //string serializationFile = Path.Combine("Submissions.bin");
+        //List<Salesman> salesmanreturn;
+
+        //serialize
+        //using (Stream stream = File.Open(serializationFile, FileMode.Create))
+        //{
+        //    var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+
+        //    bformatter.Serialize(stream, submissionList);
+        //}
+
+        //deserialize
+        //using (Stream stream = File.Open(serializationFile, FileMode.Open))
+        //{
+        //    var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+
+        //    salesmanreturn = (List<Salesman>)bformatter.Deserialize(stream);
+        //}
+        //foreach (var item in salesmanreturn)
+        //{
+        //    Console.WriteLine(item.name+" "+item.address+" "+item.email+" "+item.sales);
+        //}
+        //Console.ReadKey();
+
     }
 }
+

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using LotteryWeb.Models;
+using LotteryCore.Model;
 
 namespace LotteryCore.LotteryDataPresistence
 {
